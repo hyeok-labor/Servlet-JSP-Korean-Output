@@ -15,7 +15,7 @@ public class NoticeReg extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");					// encoding 을 어떻게 할 것인지
 		response.setContentType("text/html; charset=UTF-8");	// UTF-8 형식으로 읽으라고 요청하는것
-
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 
 		String title = request.getParameter("title");
