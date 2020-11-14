@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
+<%
+int x = 3;
+int y = 4;
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +27,7 @@ input{
 	<form action="calc3" method="post">
 		<table>
 			<tr>
-				<td class="output" colspan="4">0</td>
+				<td class="output" colspan="4">${x+y}</td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="operator" value="CE" /></td>

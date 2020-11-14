@@ -2,6 +2,8 @@ package com.newlecture.web;
 
 import java.io.IOException;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -37,7 +39,15 @@ public class Calc3 extends HttpServlet {
 		}
 
 		if(operator != null && operator.equals("=")) {
-
+			ScriptEngine engine = new ScriptEngineManager().getEngineByName(operator);
+			try {
+				exp = String.valueOf(engine.eval(exp));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		else if(operator != null && operator.equals("C")) {
+			exp ="";
 		}
 		else {
 			exp += (value==null)?"":value;
@@ -46,11 +56,13 @@ public class Calc3 extends HttpServlet {
 		}
 
 		Cookie expCookie = new Cookie("exp",exp);
+		if(operator !=null && operator.equals("C"))
+			expCookie.setMaxAge(0);
+
+		// path 설정은 하나만 가능하다.
+		expCookie.setPath("/");
 		response.addCookie(expCookie);
 		response.sendRedirect("calcpage");
-
-
-
 
 	}
 
